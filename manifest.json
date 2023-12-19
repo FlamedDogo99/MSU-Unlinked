@@ -1,0 +1,32 @@
+
+{
+   "action": {
+      
+   },
+   "content_scripts": [
+   {
+      "all_frames": true,
+      "js": [ "startLoad.js" ],
+      "matches": [ "https://www.montana.edu/*" ]
+   }],
+   "background": {
+      "service_worker": "background.js"
+   },
+   "permissions": ["contextMenus", "storage", "unlimitedStorage"],
+   "options_ui": {
+      "page": "options.html",
+      "open_in_tab": true
+   },
+   "content_security_policy": {
+      "extension_page":"script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+   },
+   "description": "Grays out invalid links on the montana.edu domain",
+   "host_permissions": [ "https://www.montana.edu/*" ],
+   "icons": {
+      "128": "logo/logo-128.png",
+      "48": "logo/logo-48.png"
+   },
+   "manifest_version": 3,
+   "name": "GrayMSU",
+   "version": "0.10.2"
+}

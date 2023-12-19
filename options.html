@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style> 
+    .grow-wrap {
+        display: grid;
+    }
+    .grow-wrap::after {
+        content: attr(data-replicated-value) " ";
+        white-space: pre-wrap;
+        visibility: hidden;
+    }
+    .grow-wrap > textarea {
+        resize: none;
+        overflow: hidden;
+    }
+    .grow-wrap > textarea, .grow-wrap::after {
+        padding: 0.5rem;
+        box-sizing: border-box;
+        outline: #ccc;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    .textAreaTitleWrapper {
+        overflow: hidden;
+        position: relative;
+        top: 2.3px;
+    }
+    .textAreaTitle {
+        padding: 0.5rem;
+        padding-top:0.3rem;
+        margin-bottom:-2.4px;
+        outline-color: #ccc;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        display: inline-block;
+    }
+    #displayArea {
+        white-space: pre-line;
+        padding: 0.5rem;
+        box-sizing: border-box;
+        outline: #ccc;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        color: gray;
+        font-family: monospace;
+        padding-bottom:1.5rem;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 12px
+
+    }
+    button {
+        border: none;
+        color: white;
+        padding: 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    #addGrayUrlButton {
+        background-color: #04AA6D; /* Green */
+    }
+    #removeGrayUrlButton {
+        background-color: #DC676D; /* Red */
+        margin-bottom: 2.0rem;
+    }
+    button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    </style>
+  </head>
+  <body>
+
+    <h2>Invalid URL List</h2>
+
+    <p><strong>Note:</strong> Each URL must be seperated by a new line.</p>
+
+            <div class="textAreaTitleWrapper">
+                <div class="textAreaTitle">Add Urls</div>
+            </div>
+            <div class="grow-wrap">
+                <textarea placeholder="https://www.example.com" name="text" id="addGrayUrl"></textarea>
+            </div>
+                <button id="addGrayUrlButton">Apply Changes</button>
+                
+
+            <div class="textAreaTitleWrapper">
+                <div class="textAreaTitle">Remove Urls</div>
+            </div>
+            <div class="grow-wrap">
+                <textarea placeholder="https://www.example.com" name="text" id="removeGrayUrl"></textarea>
+            </div>
+                <button id="removeGrayUrlButton">Apply Changes</button>
+
+            <div class="textAreaTitleWrapper">
+                <div class="textAreaTitle">Gray Url List</div>
+            </div>
+            <div id="displayArea">Your list of urls will appear here</div>
+
+    <script src="options.js"></script>
+
+  </body>
+</html>
