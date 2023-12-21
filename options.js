@@ -1,45 +1,28 @@
-let addTextArea = document.getElementById('addGrayUrl');
-let removeTextArea = document.getElementById('removeGrayUrl');
-let displayArea = document.getElementById('displayArea');
+const _realConsole = window.console;
+const consoleOutput = (logAuthor = "options.js") => {
+  const style = {
+    // Remember to change these as well on module.js
+    leftPrefix: "background:  #00205B; color: white; border-radius: 0.5rem 0 0 0.5rem; padding: 0 0.5rem",
+    rightPrefix:
+      "background: #B9975B; color: white; border-radius: 0 0.5rem 0.5rem 0; padding: 0 0.5rem; font-weight: bold",
+    text: "",
+  };
+  return [`%cGrayMSU%c${logAuthor}%c`, style.leftPrefix, style.rightPrefix, style.text];
+};
+const console = {
+  ..._realConsole,
+  log: _realConsole.log.bind(_realConsole, ...consoleOutput()),
+  warn: _realConsole.warn.bind(_realConsole, ...consoleOutput()),
+  error: _realConsole.error.bind(_realConsole, ...consoleOutput()),
+};
 
-let addTextAreaButton = document.getElementById('addGrayUrlButton');
-let removeTextAreaButton = document.getElementById('removeGrayUrlButton');
+var addTextArea = document.getElementById('addGrayUrl');
+var removeTextArea = document.getElementById('removeGrayUrl');
+var displayArea = document.getElementById('displayArea');
 
-document.getElementById("addGrayUrlButton").addEventListener("click", addData);
-function addData() {
-    chrome.storage.local.get('urls', function(data) {
-        var urlList = data.urls
-        let addUrls = addTextArea.value.split(/\r?\n/).filter(Boolean);
-	let joinedList = addUrls.concat(urlList);
-        let filteredList = joinedList.filter((item, pos) => joinedList.indexOf(item) === pos)
-        chrome.storage.local.set({ urls: filteredList }).then(() => {
-            updateDisplay()
-            addTextArea.parentNode.dataset.replicatedValue = ""
-            addTextArea.value = ""
-      });
-    });
-}
-document.getElementById("removeGrayUrlButton").addEventListener("click", removeData);
-function removeData() {
-    chrome.storage.local.get('urls', function(data) {
-        var urlList = data.urls
-        let removeUrls = removeTextArea.value.split(/\r?\n/);
-        let validRemovals = urlList.filter(x => removeUrls.indexOf(x) >= 0);
-        let filteredList = urlList.filter(x => removeUrls.indexOf(x) < 0);
-        chrome.storage.local.set({ urls: filteredList }).then(() => {
-            updateDisplay()
-            removeTextArea.parentNode.dataset.replicatedValue = ""
-            removeTextArea.value = ""
-      });
-    });
-}
+var addTextAreaButton = document.getElementById('addGrayUrlButton');
+var removeTextAreaButton = document.getElementById('removeGrayUrlButton');
 
-function updateDisplay(){ 
-    chrome.storage.local.get('urls', function(data) {
-        displayArea.textContent = data.urls.join("\n");
-    });
-}
-updateDisplay()
 var setEnabled;
 (setEnabled = function() {
     let disableAddButton = (addTextArea.value == '');
@@ -54,8 +37,36 @@ document.oninput = setEnabled;
 document.onchange = setEnabled;
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    if (message.newUrls != null) {
-        console.log("Received update from background")
-        displayArea.textContent = message.newUrls.join("\n");
+    if (message.type == "optionsUpdateRequest") {
+        console.log("Received update request from background")
+        chrome.storage.local.get('urls', function(data) {
+            displayArea.textContent = data.urls.join("\n");
+        });
     }
+});
+document.getElementById("addGrayUrlButton").addEventListener("click", addLinks);
+document.getElementById("removeGrayUrlButton").addEventListener("click", removeLinks);
+
+function addLinks() {
+    let links = addTextArea.value.split(/\r?\n/).filter(Boolean);
+    applyChanges("add", links);
+    addTextArea.parentNode.dataset.replicatedValue = "";
+    addTextArea.value = "";
+}
+
+function removeLinks() {
+    let links = removeTextArea.value.split(/\r?\n/).filter(Boolean);
+    applyChanges("remove", links)
+    removeTextArea.parentNode.dataset.replicatedValue = "";
+    removeTextArea.value = "";
+}
+
+function applyChanges(changeType, data) {
+    displayArea.textContent = "Updating...";
+    console.log("Requesting to " + changeType + " " + data.length + " urls")
+    chrome.runtime.sendMessage({type: changeType, data: data});
+}
+
+chrome.storage.local.get('urls', function(data) {
+    displayArea.textContent = data.urls.join("\n");
 });

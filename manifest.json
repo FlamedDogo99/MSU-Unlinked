@@ -6,8 +6,9 @@
    "content_scripts": [
    {
       "all_frames": true,
-      "js": [ "startLoad.js" ],
-      "matches": [ "https://www.montana.edu/*" ]
+      "js": [ "contentScript.js" ],
+      "matches": [ "https://www.montana.edu/*" ],
+      "run_at": "document_idle"
    }],
    "background": {
       "service_worker": "background.js"
