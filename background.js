@@ -98,8 +98,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 chrome.contextMenus.create({
     "id": "grayMSUcontextMenu",
     "title": "Toggle marking",
-    "contexts": ["link"]
-});
+    "contexts": ["link"],
+    "documentUrlPatterns": ["*://*.montana.edu/*"]
+}, () => chrome.runtime.lastError);
 
 
 
