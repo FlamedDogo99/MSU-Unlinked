@@ -1,7 +1,7 @@
 
 ![](logo/logo-128.png)
 
-Gray MSU Instructions
+Gray MSU Features
 ===========================================
 
 The purpose of the Gray MSU extension is to unintrusively show the broken and dead links on Montana State University's numerous websites.
