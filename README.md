@@ -1,25 +1,23 @@
+<img src="logo/logo-128.png" alt="GrayMSU logo" align="right" width="128px"></img>
 
-![](logo/logo-128.png)
+# Gray MSU
+[![](https://img.shields.io/github/v/release/FlamedDogo99/GrayMSU?style=flat-square&logo=github&logoColor=white&label=GitHub&color=181717)](https://github.com/FlamedDogo99/GrayMSU/releases)
+[![](https://img.shields.io/github/license/FlamedDogo99/GrayMSU?style=flat-square)](https://github.com/FlamedDogo99/GrayMSU/blob/master/LICENSE)
 
-Gray MSU Features
-===========================================
 
 The purpose of the Gray MSU extension is to unintrusively show the broken and dead links on Montana State University's numerous websites.
 
-Invalid Url Count
------------------
+## Invalid Url Count
 
 The extension displays the number of invalid links found on a page in blue. If the extension is displaying a gold-highlighted number preceeded by a hashtag, double click the extension icon to return to the count display.
 
 **Note:** The extension does not dynamically test urls. It pulls from a predetermined list that the user can add and subtract from.
 
-Showing Invalid Urls
---------------------
+## Showing Invalid Urls
 
 Clicking on the extension icon will either move the page to the nearest invalid url, or cycle the page to the next one. The extension icon will display which url is being shown in gold. To return to showing the count of invalid urls, double click the extension icon.
 
-Changing the Invalid Url List
------------------------------
+## Changing the Invalid Url List
 
 Urls can be dynamically changed through a context menu, or through the extension's options page.
 
