@@ -1,7 +1,6 @@
 
 {
-   "action": {
-      
+   "action": {   
    },
    "content_scripts": [
    {
@@ -13,7 +12,8 @@
    "background": {
       "service_worker": "background.js"
    },
-   "permissions": ["contextMenus", "storage", "unlimitedStorage"],
+   "permissions": ["contextMenus", "storage", "unlimitedStorage", "scripting"],
+   "host_permissions": ["https://www.montana.edu/*"],
    "options_ui": {
       "page": "options.html",
       "open_in_tab": true

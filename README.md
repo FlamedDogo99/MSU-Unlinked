@@ -18,8 +18,6 @@ Showing Invalid Urls
 
 Clicking on the extension icon will either move the page to the nearest invalid url, or cycle the page to the next one. The extension icon will display which url is being shown in orange. To return to showing the count of invalid urls, double click the extension icon.
 
-**Note:** When the extension is first installed, any already-open windows will need to be refreshed to see any changes.
-
 Changing the Invalid Url List
 -----------------------------
 
