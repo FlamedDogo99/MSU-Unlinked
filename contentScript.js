@@ -16,28 +16,18 @@ const console = {
   warn: _realConsole.warn.bind(_realConsole, ...consoleOutput()),
   error: _realConsole.error.bind(_realConsole, ...consoleOutput()),
 };
+var event = new CustomEvent("grayMSUorphanedMessage");
+console.log("Sending update notice to possible orphans")
+window.dispatchEvent(event)
 
-window.addEventListener('pageshow', function() {
-    if(taggedLinks.length > 0) {
-        chrome.runtime.sendMessage({type: "badge", data: taggedLinks.length, display: "count"});
-    }
-});
 
 applyElements();
-
 var linksDOM = document.getElementsByTagName("a"); 
 var taggedLinks = document.getElementsByClassName('grayMSUspecialTag');
-var tagVar = document.getElementsByClassName("grayMSUspecialTagVar")[0];
-
-sendPageData();
-
+var grayMSUlastscroll;
+var grayStyle = document.getElementsByClassName("grayMSUspecialStyle")[0];
 
 function applyElements() {
-    let tagVar = document.createElement("a");
-    tagVar.className = "grayMSUspecialTagVar";
-    tagVar.dataset.lastscroll = "0";
-    document.documentElement.appendChild(tagVar);
-    
     let grayStyle = document.createElement("style");
     grayStyle.textContent = `
         .grayMSUspecialTag {
@@ -45,6 +35,7 @@ function applyElements() {
             color: gray !important;
         }
     `;
+    grayStyle.className = "grayMSUspecialStyle";
     document.documentElement.appendChild(grayStyle);
 }
 
@@ -54,8 +45,29 @@ function sendPageData() {
     console.log("Sent " + linksHref.length + " urls to background to be filtered");
 }
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    let links = [...linksDOM]
+window.addEventListener("grayMSUorphanedMessage", onDisconnect);
+function onDisconnect() {
+    if(chrome.runtime?.id) {
+        console.warn("Received false orphan message");
+        return;
+    }
+    console.log("Content script is orphaned. Disconnecting event listeners and removing injected elements");
+    chrome.runtime.onMessage.removeListener(onMessage);
+    window.removeEventListener('pageshow', pageshow);
+    window.removeEventListener("grayMSUorphanedMessage", onDisconnect);
+    grayStyle.remove();
+    let links = [...linksDOM];
+    links.forEach(x => x.classList.remove('grayMSUspecialTag'));
+}
+
+window.addEventListener('pageshow', pageshow);
+function pageshow() {
+    sendPageData();
+}
+
+chrome.runtime.onMessage.addListener(onMessage);
+function onMessage(message, sender, sendResponse) {
+    let links = [...linksDOM];
 
     switch(message.type) {
     case "data": // Receiving list of urls from background
@@ -74,7 +86,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         chrome.runtime.sendMessage({type: "badge", data: taggedLinks.length, display: "count"});
         break;
     case "click":
-        let selectedIndex = parseInt(tagVar.dataset.lastscroll);
         if(taggedLinks.length > 0) {
             let x = (window.innerWidth) / 2 + window.scrollX;
             let y = (window.innerHeight) / 2 + window.scrollY;
@@ -90,22 +101,21 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                         minDistanceID = i;
                 }
             }
-            if(minDistanceID == selectedIndex) {
-                if(selectedIndex >= taggedLinks.length) {
-                    selectedIndex = 0;
+            if(minDistanceID == grayMSUlastscroll) {
+                if(grayMSUlastscroll >= taggedLinks.length) {
+                    grayMSUlastscroll = 0;
                 } else {
-                    selectedIndex += 1;
+                    grayMSUlastscroll += 1;
                 }
             } else {
-                selectedIndex = minDistanceID
+                grayMSUlastscroll = minDistanceID
             }
-            tagVar.dataset.lastscroll = '' + selectedIndex;
-            taggedLinks[selectedIndex].scrollIntoView({behavior: 'smooth', block: "center"});
-            chrome.runtime.sendMessage({type: "badge", data: '#' + (selectedIndex + 1), display: "index"});
+            taggedLinks[grayMSUlastscroll].scrollIntoView({behavior: 'smooth', block: "center"});
+            chrome.runtime.sendMessage({type: "badge", data: '#' + (grayMSUlastscroll + 1), display: "index"});
         }
         break;
     default:
         console.error("Unknown message", message)
     }
-});
+}
 

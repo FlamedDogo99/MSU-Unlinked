@@ -1,4 +1,5 @@
 // On first install
+
 chrome.runtime.onInstalled.addListener(function(details){
     if(details.reason == "install"){
         const url = chrome.runtime.getURL('initialURLS.json');
@@ -9,23 +10,23 @@ chrome.runtime.onInstalled.addListener(function(details){
             });
         chrome.tabs.create({ url: chrome.runtime.getURL("instructions.html") });
     }
-});
-
-const isValidUrl = urlString=> {
-    try { 
-        return Boolean(new URL(urlString)); 
-    } catch(e) { 
-        return false; 
+        for (const cs of chrome.runtime.getManifest().content_scripts) {
+        chrome.tabs.query({url: 'https://www.montana.edu/*'}, (tabs) => tabs.forEach( tab => {
+            chrome.scripting.executeScript({
+                target: {tabId: tab.id},
+                files: cs.js,
+            })
+            .then(() => {
+                chrome.tabs.sendMessage(tab.id, {type: "updateRequest"}, () => chrome.runtime.lastError);
+            });
+        }));
     }
-}
+});
 
 function requestUpdateAll() {
     console.log("Sending update request to all tabs");
-    chrome.tabs.query({}, (tabs) => tabs.forEach( tab => {
-        if(isValidUrl(tab.url)) {
-            const url = new URL(tab.url);
-            chrome.tabs.sendMessage(tab.id, {type: "updateRequest"}, () => chrome.runtime.lastError);
-        }
+    chrome.tabs.query({url: 'https://www.montana.edu/*'}, (tabs) => tabs.forEach( tab => {
+        chrome.tabs.sendMessage(tab.id, {type: "updateRequest"}, () => chrome.runtime.lastError);
     }));
     chrome.runtime.sendMessage({type: "optionsUpdateRequest"}, () => chrome.runtime.lastError);
 }
