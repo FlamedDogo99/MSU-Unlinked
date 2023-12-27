@@ -1,4 +1,4 @@
-<img src="logo/logo-128.png" alt="GrayMSU logo" align="right" width="128px"></img>
+<img src="src/logo/logo-128.png" alt="GrayMSU logo" align="right" width="128px"></img>
 
 # Gray MSU
 [![](https://img.shields.io/github/v/release/FlamedDogo99/GrayMSU?style=flat-square&logo=github&logoColor=white&label=GitHub&color=181717)](https://github.com/FlamedDogo99/GrayMSU/releases)
