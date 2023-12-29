@@ -21,7 +21,7 @@
    "content_security_policy": {
       "extension_page":"script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
    },
-   "description": "The purpose of the Gray MSU extension is to unintrusively show the broken and dead links on Montana State University&#39;s numerous websites.",
+   "description": "The purpose of the MSU Unlinked extension is to unintrusively show the broken and dead links on Montana State University's numerous websites.",
    "host_permissions": [ "https://www.montana.edu/*" ],
    "icons": {
       "128": "logo/logo-128.png",
