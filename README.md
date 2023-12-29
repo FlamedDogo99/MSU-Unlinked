@@ -1,7 +1,7 @@
 <img src="src/logo/logo-2000.png" alt="MSU Unlinked logo" align="right" width="128px"></img>
 
 # MSU Unlinked
-[![](https://img.shields.io/github/v/release/FlamedDogo99/MSU-Unlinked?style=flat-square&logo=github&logoColor=white&label=GitHub&color=181717)](https://github.com/FlamedDogo99/GrayMSU/releases)
+[![](https://img.shields.io/github/v/release/FlamedDogo99/MSU-Unlinked?style=flat-square&logo=github&logoColor=white&label=GitHub&color=181716)](https://github.com/FlamedDogo99/GrayMSU/releases)
 [![](https://img.shields.io/github/license/FlamedDogo99/MSU-Unlinked?style=flat-square)](https://github.com/FlamedDogo99/GrayMSU/blob/master/LICENSE)
 
 
