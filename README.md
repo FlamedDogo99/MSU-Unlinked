@@ -1,11 +1,11 @@
-<img src="logo/logo-128.png" alt="GrayMSU logo" align="right" width="128px"></img>
+<img src="logo/logo-2000.png" alt="MSU Unlinked logo" align="right" width="128px"></img>
 
-# Gray MSU
+# MSU Unlinked
 [![](https://img.shields.io/github/v/release/FlamedDogo99/GrayMSU?style=flat-square&logo=github&logoColor=white&label=GitHub&color=181717)](https://github.com/FlamedDogo99/GrayMSU/releases)
 [![](https://img.shields.io/github/license/FlamedDogo99/GrayMSU?style=flat-square)](https://github.com/FlamedDogo99/GrayMSU/blob/master/LICENSE)
 
 
-The purpose of the Gray MSU extension is to unintrusively show the broken and dead links on Montana State University's numerous websites.
+The purpose of the MSU Unlinked extension is to unintrusively show the broken and dead links on Montana State University's numerous websites.
 
 ## Invalid Url Count
 
