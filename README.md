@@ -7,7 +7,7 @@
 )](https://chrome.google.com/webstore/detail/pppekdhhpiegbdejhgnlahejbldapioj)
 [![](https://img.shields.io/github/license/FlamedDogo99/MSU-Unlinked?style=flat-square)](https://github.com/FlamedDogo99/GrayMSU/blob/master/LICENSE)
 
-[<img src=".github/ISSUE_TEMPLATE/chrome.png" alt="MSU Unlinked logo" width="206px"></img>](https://chrome.google.com/webstore/detail/pppekdhhpiegbdejhgnlahejbldapioj)
+[<img src=".github/ISSUE_TEMPLATE/chrome.png" alt="Webstore icon" width="206px"></img>](https://chrome.google.com/webstore/detail/pppekdhhpiegbdejhgnlahejbldapioj)
 
 
 
