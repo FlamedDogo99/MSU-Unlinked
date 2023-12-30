@@ -2,7 +2,7 @@
 
 # MSU Unlinked
 [![](https://img.shields.io/github/v/release/FlamedDogo99/MSU-Unlinked?style=flat-square&logo=github&logoColor=white&label=GitHub&color=181716)](https://github.com/FlamedDogo99/GrayMSU/releases)
-![Static Badge](https://img.shields.io/badge/Chrome-pending-orange?style=flat-square&logo=google-chrome&logoColor=%23ffffff)
+[![](https://img.shields.io/chrome-web-store/v/pppekdhhpiegbdejhgnlahejbldapioj?style=flat-square&logo=google-chrome&logoColor=white&label=Chrome&color=blue)](https://chrome.google.com/webstore/detail/pppekdhhpiegbdejhgnlahejbldapioj)
 [![](https://img.shields.io/github/license/FlamedDogo99/MSU-Unlinked?style=flat-square)](https://github.com/FlamedDogo99/GrayMSU/blob/master/LICENSE)
 
 
