@@ -1,8 +1,11 @@
 <img src="src/logo/logo-2000.png" alt="MSU Unlinked logo" align="right" width="128px"></img>
 
 # MSU Unlinked
-[![](https://img.shields.io/github/v/release/FlamedDogo99/MSU-Unlinked?style=flat-square&logo=github&logoColor=white&label=GitHub&color=181717)](https://github.com/FlamedDogo99/GrayMSU/releases)
+[![](https://img.shields.io/github/v/release/FlamedDogo99/MSU-Unlinked?style=flat-square&logo=github&logoColor=white&label=GitHub&color=181716)](https://github.com/FlamedDogo99/GrayMSU/releases)
+[![](https://img.shields.io/badge/Chrome-v0.11.1-blue?style=flat-square&logo=google-chrome&logoColor=white
+)](https://chrome.google.com/webstore/detail/pppekdhhpiegbdejhgnlahejbldapioj)
 [![](https://img.shields.io/github/license/FlamedDogo99/MSU-Unlinked?style=flat-square)](https://github.com/FlamedDogo99/GrayMSU/blob/master/LICENSE)
+
 
 
 The purpose of the MSU Unlinked extension is to unintrusively show the broken and dead links on Montana State University's numerous websites.
